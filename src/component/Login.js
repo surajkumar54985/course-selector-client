@@ -61,6 +61,14 @@ const Login = ({ setIsloggedin }) => {
         .then((resp) => {
           localStorage.setItem("Token", resp.token);
           const Token = localStorage.getItem("Token");
+          if(resp.message === 'Incorrect Username')
+          {
+            setIsLoggingIn(false);
+          }
+          if(resp.message === 'Invalid Password')
+          {
+            setIsLoggingIn(false);
+          }
 
           toast.success(resp.message);
 
