@@ -3,11 +3,10 @@ import React, { useContext, useState, useReducer} from "react";
 import "../static/css/filter.css";
 import SearchContext from "../context/searchContext";
 
-const Filter = () => {
+const Filter = ({setCurrPage}) => {
 
   const ctx = useContext(SearchContext);
-
-
+  
   // const courseReducer = (state,action) => {
     
   // };
@@ -59,6 +58,7 @@ const Filter = () => {
     e.preventDefault();
     ctx.stCourse(Course);
     ctx.stChildsub(ChildSubject);
+    setCurrPage(0);
   
     // ctx.stSelf(Self);
     // return ctx;
@@ -155,7 +155,7 @@ const Filter = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Filter;
 

@@ -24,7 +24,6 @@ function DashBord() {
   const [self, stSelf] = useState("");
   const [auth, setAuth] = useState(false);
 
-  // console.log(ctx);
 
   // const arr = Object.keys(auth).map((key) => [key, auth[key]]);
 
@@ -52,10 +51,10 @@ function DashBord() {
     );
   };
 
-  const showFilter = () => {
+  const showFilter = (setCurrPage,currPage) => {
     return (
       <SearchContextProvider>
-        <Filter />
+        <Filter setCurrPage={setCurrPage} currPage={currPage} />
       </SearchContextProvider>
     );
   };
@@ -71,7 +70,7 @@ function DashBord() {
       <SearchContextProvider>
         <div className="container">
           <SearchContextProvider>
-            {<Filter />}
+            {<Filter setCurrPage={setCurrPage} />}
             
             {<div className="container Cards">{showCards()}</div>}
             {loader && (

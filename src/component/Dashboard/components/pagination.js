@@ -6,10 +6,11 @@ const Pagination = ({currPage,setCurrPage}) => {
     const ctx = useContext(SearchContext);
     // console.log(ctx);
 
+
     return (
         <nav aria-label="Page navigation example">
             <ul className="pagination justify-content-center">
-                <li className="page-item page-link" onClick={() => {if(currPage>1)
+                <li className="page-item page-link" onClick={() => {if(currPage>=1)
                     {
                         setCurrPage(currPage-1);
                     }}}>&laquo;</li>
