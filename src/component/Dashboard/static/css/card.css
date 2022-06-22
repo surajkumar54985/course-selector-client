@@ -13,9 +13,10 @@
 .Cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     margin-left: 5px;
     margin-right: 5px;
+    align-items: center;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -24,7 +25,9 @@
     box-shadow: 0 0 4px 3px rgb(20, 124, 198);
     border-radius: 25px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 20px;  
+    margin-right: 20px;
+    margin-left: 20px;
     width: 24rem;
 }
 
