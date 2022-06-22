@@ -2,9 +2,6 @@ import "./App.css";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import CardBox from "./components/cardBox";
 
-// import Card from './components/card';
-import axios from "axios";
-import Header from "./components/header";
 import Pagination from "./components/pagination";
 import { useContext, useEffect, useState } from "react";
 import Filter from "./components/Filter";
@@ -37,7 +34,7 @@ function DashBord() {
 
   // setAuth(Actx.auth.isAuthenticated);
 
-  console.log(Actx);
+  // console.log(Actx);
 
   // const auth = true;
   // const auth = Actx.auth.isAuthenticated;
@@ -75,6 +72,7 @@ function DashBord() {
         <div className="container">
           <SearchContextProvider>
             {<Filter />}
+            
             {<div className="container Cards">{showCards()}</div>}
             {loader && (
               <div>

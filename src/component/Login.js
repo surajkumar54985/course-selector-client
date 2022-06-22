@@ -5,11 +5,13 @@ import "./Form.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "../../node_modules/font-awesome/css/font-awesome.min.css";
+import { ToastContainer, toast } from "react-toastify";
+import Loader from "./loader";
 
 const Login = ({ setIsloggedin }) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [Cpass, setCpass] = useState("");
+  const [LoggingIn, setIsLoggingIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,6 +39,7 @@ const Login = ({ setIsloggedin }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    setIsLoggingIn(true);
     const status = formHandler(e);
     if (status) {
       fetch("https://selector-course.herokuapp.com/login", {
@@ -59,6 +62,8 @@ const Login = ({ setIsloggedin }) => {
           localStorage.setItem("Token", resp.token);
           const Token = localStorage.getItem("Token");
 
+          toast.success(resp.message);
+
           fetch("https://selector-course.herokuapp.com/dashboard", {
             // Adding method type
             method: "POST",
@@ -78,69 +83,81 @@ const Login = ({ setIsloggedin }) => {
                 localStorage.setItem("loggedin", true);
                 const loggedin = localStorage.getItem("loggedin");
                 setIsloggedin(loggedin);
+                setIsLoggingIn(false);
+                toast.success(resp.message);
                 navigate("/");
               }
             })
             .catch((error) => {
+              setIsLoggingIn(false);
               console.log(error);
             });
         })
         .catch((error) => {
+          setIsLoggingIn(false);
           console.log(error);
         });
     }
   };
 
   return (
-    <div style={{'backgroundColor':'#fff'}}>
-        <div className="cardHolder">
-        <div className="signup-form" style={{ backgroundColor: "#19aa8d" }}>
-            <form onSubmit={onSubmitHandler} method="post" style={{'marginTop':'140px'}}>
-            <h2>Login</h2>
+    <div style={{ backgroundColor: "#fff" }}>
+      <div className="cardHolder">
+        {LoggingIn ? (
+          <Loader />
+        ) : (
+          <div className="signup-form" style={{ backgroundColor: "#19aa8d" }}>
+            <form
+              onSubmit={onSubmitHandler}
+              method="post"
+              style={{ marginTop: "140px" }}
+            >
+              <h2>Login</h2>
 
-            <div className="form-group">
+              <div className="form-group">
                 <div className="input-group">
-                <div className="input-group-prepend">
+                  <div className="input-group-prepend">
                     <span className="input-group-text">
-                    <i className="fa fa-paper-plane"></i>
+                      <i className="fa fa-paper-plane"></i>
                     </span>
-                </div>
-                <input
+                  </div>
+                  <input
                     type="email"
                     className="form-control"
                     name="email"
                     onChange={EmailChangeHandler}
                     placeholder="Email Address"
                     required="required"
-                />
+                  />
                 </div>
-            </div>
-            <div className="form-group">
+              </div>
+              <div className="form-group">
                 <div className="input-group">
-                <div className="input-group-prepend">
+                  <div className="input-group-prepend">
                     <span className="input-group-text">
-                    <i className="fa fa-lock"></i>
+                      <i className="fa fa-lock"></i>
                     </span>
-                </div>
-                <input
+                  </div>
+                  <input
                     type="text"
                     className="form-control"
                     name="password"
                     onChange={passChangeHandler}
                     placeholder="Password"
                     required="required"
-                />
+                  />
                 </div>
-            </div>
+              </div>
 
-            <div className="form-group">
+              <div className="form-group">
                 <button type="submit" className="btn btn-primary btn-lg">
-                Log In
+                  Log In
                 </button>
-            </div>
+              </div>
             </form>
-        </div>
-        </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

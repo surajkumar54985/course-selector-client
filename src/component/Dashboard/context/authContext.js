@@ -12,7 +12,7 @@ const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
   const [auth, setAuth] = useState({});
 
-  console.log(auth);
+  // console.log(auth);
 
   return (
     <AuthContext.Provider value={{auth,

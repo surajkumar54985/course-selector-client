@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './Form.css';
 
 const Header = ({ loggedin, token, logoutHandler }) => {
-  console.log(loggedin, "header");
+  // console.log(loggedin, "header");
   return (
     <div>
       <nav className="navbar1">

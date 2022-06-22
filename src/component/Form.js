@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '../../node_modules/font-awesome/css/font-awesome.min.css'; 
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const FormPage = () => {
 
@@ -88,9 +89,11 @@ const FormPage = () => {
             .then(resp=>resp.json())
             .then((resp)=>{
                 console.log(resp);
+                toast.success(resp.message);
                 navigate('/login');
             })
             .catch((error)=>{
+                toast.danger('Error While Sign-Up');
                 console.log(error);
             })
         }
