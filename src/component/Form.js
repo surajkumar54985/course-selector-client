@@ -22,7 +22,7 @@ const FormPage = () => {
     }
     const EmailChangeHandler = (e) =>  {
         e.preventDefault();
-        setEmail(e.target.value);
+        setEmail(e.target.value.toLowerCase());
     }
     const passChangeHandler = (e) =>  {
         e.preventDefault();
