@@ -155,7 +155,7 @@ const FormPage = () => {
                         <button type="submit" className="btn btn-primary btn-lg">Sign Up</button>
                     </div>
                 </form>
-                <div className="text-center">Already have an account? <a href="https://courseselector.netlify.app//login">Login here</a></div>
+                <div className="text-center">Already have an account? <a href="https://courseselector.netlify.app/login">Login here</a></div>
             </div>
         </div>
     </div>
