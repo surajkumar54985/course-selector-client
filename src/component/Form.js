@@ -88,12 +88,11 @@ const FormPage = () => {
             })
             .then(resp=>resp.json())
             .then((resp)=>{
-                console.log(resp);
                 toast.success(resp.message);
                 navigate('/login');
             })
             .catch((error)=>{
-                toast.danger('Error While Sign-Up');
+                toast('Error While Sign-Up');
                 console.log(error);
             })
         }
@@ -135,7 +134,7 @@ const FormPage = () => {
                                     <i className="fa fa-lock"></i>
                                 </span>                    
                             </div>
-                            <input type="text" className="form-control" name="password" onChange={passChangeHandler} placeholder="Password" required="required" />
+                            <input type="password" className="form-control" name="password" onChange={passChangeHandler} placeholder="Password" required="required" />
                         </div>
                     </div>
                     <div className="form-group">
@@ -146,7 +145,7 @@ const FormPage = () => {
                                     <i className="fa fa-check"></i>
                                 </span>                    
                             </div>
-                            <input type="text" className="form-control" name="confirm_password" onChange={CpassChangeHandler} placeholder="Confirm Password" required="required" />
+                            <input type="password" className="form-control" name="confirm_password" onChange={CpassChangeHandler} placeholder="Confirm Password" required="required" />
                         </div>
                     </div>
                     <div className="form-group">
@@ -156,7 +155,7 @@ const FormPage = () => {
                         <button type="submit" className="btn btn-primary btn-lg">Sign Up</button>
                     </div>
                 </form>
-                <div className="text-center">Already have an account? <a href="/login">Login here</a></div>
+                <div className="text-center">Already have an account? <a href="https://courseselector.netlify.app//login">Login here</a></div>
             </div>
         </div>
     </div>

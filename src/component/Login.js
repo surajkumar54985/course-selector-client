@@ -61,12 +61,10 @@ const Login = ({ setIsloggedin }) => {
         .then((resp) => {
           localStorage.setItem("Token", resp.token);
           const Token = localStorage.getItem("Token");
-          if(resp.message === 'Incorrect Username')
-          {
+          if (resp.message === "Incorrect Username") {
             setIsLoggingIn(false);
           }
-          if(resp.message === 'Invalid Password')
-          {
+          if (resp.message === "Invalid Password") {
             setIsLoggingIn(false);
           }
 
@@ -87,6 +85,7 @@ const Login = ({ setIsloggedin }) => {
             },
           })
             .then((resp) => {
+              console.log(resp);
               if (resp.ok) {
                 localStorage.setItem("loggedin", true);
                 const loggedin = localStorage.getItem("loggedin");
@@ -94,6 +93,27 @@ const Login = ({ setIsloggedin }) => {
                 setIsLoggingIn(false);
                 toast.success(resp.message);
                 navigate("/");
+              }
+              if (resp.status == 401) {
+                setIsLoggingIn(false);
+                toast.success(resp.message);
+                fetch("https://selector-course.herokuapp.com/resend", {
+                  // Adding method type
+                  method: "POST",
+
+                  // Adding body or contents to send
+                  body: JSON.stringify({
+                    email: email,
+                  }),
+
+                  // Adding headers to the request
+                  headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                  },
+                })
+                  .then((data) => console.log(data))
+                  .catch((err) => console.log(err));
+                navigate("/login");
               }
             })
             .catch((error) => {
