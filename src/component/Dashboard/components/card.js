@@ -2,12 +2,12 @@ import '../static/css/card.css';
 // import React , {useEffect,useState} from 'react';
 // import axios from 'axios';
 
-const Card = ({courseId,courseName,pSubject,date,cSubject,Provider,College}) => {
+const Card = ({courseId,courseName,pSubject,date,cSubject,Provider,College,CourseUrl}) => {
 
     
     
     return (
-        <div className="card-body">
+        <a href={CourseUrl}><div className="card-body">
             <div className="row">
                 <div className="col-lg-6 head headid"><div className="id">{courseId}</div></div>
                 <div className="col-lg-6 date">{date}</div>
@@ -38,7 +38,7 @@ const Card = ({courseId,courseName,pSubject,date,cSubject,Provider,College}) => 
                     </div>
                 </div>
             </div>
-        </div>
+        </div></a>
     );
 }
 

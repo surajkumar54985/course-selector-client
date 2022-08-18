@@ -103,6 +103,7 @@ const CardBox = ({ setLoader, currPage }) => {
             cSubject={props[1]["Child Subject"]}
             Provider={props[1]["Provider"]}
             College={props[1]["Universities/Institutions"]}
+            CourseUrl={props[1]["Url"]}
           />
         </div>
       );
