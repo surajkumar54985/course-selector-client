@@ -7,7 +7,7 @@ import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const FormPage = () => {
+const AdminFormPage = () => {
 
     const [uname,setUname] = useState('');
     const [email,setEmail] = useState('');
@@ -68,7 +68,7 @@ const FormPage = () => {
         const status = formHandler(e);
         if(status)
         {
-            fetch('http://localhost:8000/user/signup',{
+            fetch('http://localhost:8000/admin/signup',{
      
                 // Adding method type
                 method: "POST",
@@ -89,7 +89,7 @@ const FormPage = () => {
             .then(resp=>resp.json())
             .then((resp)=>{
                 toast.success(resp.message);
-                navigate('/login');
+                navigate('/adminlogin');
             })
             .catch((error)=>{
                 toast('Error While Sign-Up');
@@ -104,7 +104,7 @@ const FormPage = () => {
         <div className="cardHolder">
             <div className="signup-form" style={{'verticalAlign':'middle'}}>
                 <form onSubmit={onSubmitHandler} method="post">
-                    <h2>Sign Up</h2>
+                    <h2>Admin Sign Up</h2>
                     <p>Please fill in this form to create an account!</p>
                     
                     <div className="form-group">
@@ -155,11 +155,11 @@ const FormPage = () => {
                         <button type="submit" className="btn btn-primary btn-lg">Sign Up</button>
                     </div>
                 </form>
-                <div className="text-center">If you are an admin? <a href="http://localhost:3000/admin">Login here</a></div>
+                <div className="text-center">Already have an Admin account? <a href="http://localhost:3000/admin">Login here</a></div>
             </div>
         </div>
     </div>
   );
 };
 
-export default FormPage;
+export default AdminFormPage;

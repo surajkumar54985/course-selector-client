@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './Form.css';
 
-const Header = ({ loggedin, token, logoutHandler }) => {
+const Header = ({ loggedin, adminloggedin, token, logoutHandler }) => {
   // console.log(loggedin, "header");
   return (
     <div>
       <nav className="navbar1">
         <span className="title">Course Finder</span>
         <span style={{'float':'right','marginTop':'30px'}}>
-          {loggedin ? (
+          {(loggedin||adminloggedin) ? (
             <ul className="navbar-nav mr-auto" style={{ color: "white" }}>
               <li className="nav-item" onClick={logoutHandler}>
                 <Link to={"/login"} className="nav-lnk">
@@ -27,6 +27,11 @@ const Header = ({ loggedin, token, logoutHandler }) => {
               <li className="nav-item">
                 <Link to={"/login"} className="nav-lnk">
                     <button className="btn btn-light">login</button>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/admin"} className="nav-lnk">
+                    <button className="btn btn-light">admin</button>
                 </Link>
               </li>
             </ul>

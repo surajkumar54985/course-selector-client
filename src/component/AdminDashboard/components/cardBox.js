@@ -10,11 +10,11 @@ const CardBox = ({ setLoader, currPage }) => {
   const cardsPerPage = 21;
 
   // const ctx = useContext(SearchContextProvider);
-  // const url = "https://nut-case.s3.amazonaws.com/coursessc.json";
-  const url = "http://localhost:8000/user/courses";
 
+  const url = "https://nut-case.s3.amazonaws.com/coursessc.json";
   const ctx = useContext(SearchContext);
   
+
   const getData = () => {
     setLoader(true);
     const response = axios
@@ -22,7 +22,6 @@ const CardBox = ({ setLoader, currPage }) => {
       .then((res) => {
         const ans = res.data;
         setData(ans);
-        console.log(ans);
         setLoader(false); 
       })
       .catch((error) => {
@@ -57,12 +56,8 @@ const CardBox = ({ setLoader, currPage }) => {
 };
 // console.log(formatDate(('20th Feb, 2012')));
 
-  const arr1 = allData;
-  JSON.stringify(allData);
-  const arr = Object.keys(allData).map((key) => {return [key, allData[key]]});
-  console.log(`allData`+allData);
-  console.log(`arr`+arr);
-  let filterArr = arr1
+  const arr = Object.keys(allData).map((key) => [key, allData[key]]);
+  let filterArr = arr
     .filter((item) => item[1]["Course Name"].includes(ctx.course))
     .filter((item) => item[1]["Child Subject"].includes(ctx.childsub))
     .filter((item) => {

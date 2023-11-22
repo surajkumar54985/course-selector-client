@@ -1,7 +1,6 @@
 import "./App.css";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import CardBox from "./components/cardBox";
-import CardBoxnew from "./components/cardBoxnew"
 
 import Pagination from "./components/pagination";
 import { useContext, useEffect, useState } from "react";
@@ -44,7 +43,7 @@ function DashBord() {
 
   const showCards = () => {
     return (
-      <CardBoxnew
+      <CardBox
         setLoader={setLoader}
         currPage={currPage}
         setCurrPage={setCurrPage}

@@ -8,10 +8,10 @@ import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import { ToastContainer, toast } from "react-toastify";
 import Loader from "./loader";
 
-const Login = ({ setIsloggedin }) => {
+const AdminLogin = ({ setIsadminloggedin }) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [LoggingIn, setIsLoggingIn] = useState(false);
+  const [adminLoggingIn, setIsadminLoggingIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -39,10 +39,10 @@ const Login = ({ setIsloggedin }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    setIsLoggingIn(true);
+    setIsadminLoggingIn(true);
     const status = formHandler(e);
     if (status) {
-      fetch("http://localhost:8000/user/login", {
+      fetch("http://localhost:8000/admin/login", {
         // Adding method type
         method: "POST",
 
@@ -60,17 +60,20 @@ const Login = ({ setIsloggedin }) => {
         .then((resp) => resp.json())
         .then((resp) => {
           localStorage.setItem("Token", resp.token);
+          localStorage.setItem("AdminId", resp.AdminToken);
           const Token = localStorage.getItem("Token");
+          console.log(`Token - `+Token);
+          console.log(localStorage);
           if (resp.message === "Incorrect Username") {
-            setIsLoggingIn(false);
+            setIsadminLoggingIn(false);
           }
           if (resp.message === "Invalid Password") {
-            setIsLoggingIn(false);
+            setIsadminLoggingIn(false);
           }
 
           toast.success(resp.message);
 
-          fetch("http://localhost:8000/user/dashboard", {
+          fetch("http://localhost:8000/admin/dashboard", {
             // Adding method type
             method: "POST",
 
@@ -87,17 +90,17 @@ const Login = ({ setIsloggedin }) => {
             .then((resp) => {
               console.log(resp);
               if (resp.ok) {
-                localStorage.setItem("loggedin", true);
-                const loggedin = localStorage.getItem("loggedin");
-                setIsloggedin(loggedin);
-                setIsLoggingIn(false);
+                localStorage.setItem("adminloggedin", true);
+                const adminloggedin = localStorage.getItem("adminloggedin");
+                setIsadminloggedin(adminloggedin);
+                setIsadminLoggingIn(false);
                 toast.success(resp.message);
-                navigate("/");
+                navigate("/admin");
               }
               if (resp.status == 401) {
-                setIsLoggingIn(false);
+                setIsadminLoggingIn(false);
                 toast.success(resp.message);
-                fetch("http://localhost:8000/user/resend", {
+                fetch("http://localhost:8000/admin/resend", {
                   // Adding method type
                   method: "POST",
 
@@ -113,16 +116,16 @@ const Login = ({ setIsloggedin }) => {
                 })
                   .then((data) => console.log(data))
                   .catch((err) => console.log(err));
-                navigate("/login");
+                navigate("/admin");
               }
             })
             .catch((error) => {
-              setIsLoggingIn(false);
+                setIsadminLoggingIn(false);
               console.log(error);
             });
         })
         .catch((error) => {
-          setIsLoggingIn(false);
+            setIsadminLoggingIn(false);
           console.log(error);
         });
     }
@@ -131,7 +134,7 @@ const Login = ({ setIsloggedin }) => {
   return (
     <div style={{ backgroundColor: "#fff" }}>
       <div className="cardHolder">
-        {LoggingIn ? (
+        {adminLoggingIn ? (
           <Loader />
         ) : (
           <div className="signup-form" style={{ backgroundColor: "#19aa8d" }}>
@@ -140,7 +143,7 @@ const Login = ({ setIsloggedin }) => {
               method="post"
               style={{ marginTop: "140px" }}
             >
-              <h2>Login</h2>
+              <h2>Admin Login</h2>
 
               <div className="form-group">
                 <div className="input-group">
@@ -183,11 +186,13 @@ const Login = ({ setIsloggedin }) => {
                 </button>
               </div>
             </form>
-          </div>
+            </div>
         )}
+        <div className="text-center">Create an admin account. <a href="http://localhost:3000/adminsignup">Admin Signup</a></div>
+        
       </div>
     </div>
   );
 };
 
-export default Login;
+export default AdminLogin;
