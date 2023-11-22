@@ -42,7 +42,7 @@ const Login = ({ setIsloggedin }) => {
     setIsLoggingIn(true);
     const status = formHandler(e);
     if (status) {
-      fetch("http://localhost:8000/user/login", {
+      fetch("https://auth-course-finder1.onrender.com/user/login", {
         // Adding method type
         method: "POST",
 
@@ -70,7 +70,7 @@ const Login = ({ setIsloggedin }) => {
 
           toast.success(resp.message);
 
-          fetch("http://localhost:8000/user/dashboard", {
+          fetch("https://auth-course-finder1.onrender.com/user/dashboard", {
             // Adding method type
             method: "POST",
 
@@ -97,7 +97,7 @@ const Login = ({ setIsloggedin }) => {
               if (resp.status == 401) {
                 setIsLoggingIn(false);
                 toast.success(resp.message);
-                fetch("http://localhost:8000/user/resend", {
+                fetch("https://auth-course-finder1.onrender.com/user/resend", {
                   // Adding method type
                   method: "POST",
 
