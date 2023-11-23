@@ -11,7 +11,7 @@ const CardBox = ({ setLoader, currPage }) => {
 
   // const ctx = useContext(SearchContextProvider);
   // const url = "https://nut-case.s3.amazonaws.com/coursessc.json";
-  const url = "http://localhost:8000/user/courses";
+  const url = "https://auth-course-finder1.onrender.com/user/courses";
 
   const ctx = useContext(SearchContext);
   

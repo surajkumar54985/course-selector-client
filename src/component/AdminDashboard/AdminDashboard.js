@@ -75,7 +75,7 @@ const AdminDashBoard = () => {
     e.preventDefault();
     const status = formHandler(e);
     if (status) {
-      fetch("http://localhost:8000/admin/addcourse", {
+      fetch("https://auth-course-finder1.onrender.com/admin/addcourse", {
         // Adding method type
         method: "POST",
 

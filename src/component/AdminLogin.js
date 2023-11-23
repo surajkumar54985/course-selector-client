@@ -42,7 +42,7 @@ const AdminLogin = ({ setIsadminloggedin }) => {
     setIsadminLoggingIn(true);
     const status = formHandler(e);
     if (status) {
-      fetch("http://localhost:8000/admin/login", {
+      fetch("https://auth-course-finder1.onrender.com/admin/login", {
         // Adding method type
         method: "POST",
 
@@ -73,7 +73,7 @@ const AdminLogin = ({ setIsadminloggedin }) => {
 
           toast.success(resp.message);
 
-          fetch("http://localhost:8000/admin/dashboard", {
+          fetch("https://auth-course-finder1.onrender.com/admin/dashboard", {
             // Adding method type
             method: "POST",
 
@@ -100,7 +100,7 @@ const AdminLogin = ({ setIsadminloggedin }) => {
               if (resp.status == 401) {
                 setIsadminLoggingIn(false);
                 toast.success(resp.message);
-                fetch("http://localhost:8000/admin/resend", {
+                fetch("https://auth-course-finder1.onrender.com/admin/resend", {
                   // Adding method type
                   method: "POST",
 
