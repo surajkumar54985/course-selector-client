@@ -85,7 +85,7 @@ const Login = ({ setIsloggedin }) => {
             },
           })
             .then((resp) => {
-              console.log(resp);
+              // console.log(resp);
               if (resp.ok) {
                 localStorage.setItem("loggedin", true);
                 const loggedin = localStorage.getItem("loggedin");
